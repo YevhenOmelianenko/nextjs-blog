@@ -18,7 +18,8 @@ export default async function Page(props: PropsType) {
   }
 
   const post = await getPostByFullPath(params.slugs);
-  if (post) {
+
+  if (post?.status === 'published') {
     return <PostPage post={post} />;
   }
 
