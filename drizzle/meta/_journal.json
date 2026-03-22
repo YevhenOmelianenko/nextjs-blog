@@ -15,6 +15,13 @@
       "when": 1774115710615,
       "tag": "0001_chilly_bloodaxe",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1774197950329,
+      "tag": "0002_known_shinobi_shaw",
+      "breakpoints": true
     }
   ]
 }
