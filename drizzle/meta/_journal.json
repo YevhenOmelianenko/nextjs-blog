@@ -22,6 +22,13 @@
       "when": 1774197950329,
       "tag": "0002_known_shinobi_shaw",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1774454624903,
+      "tag": "0003_colossal_synch",
+      "breakpoints": true
     }
   ]
 }

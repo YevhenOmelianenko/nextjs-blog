@@ -1,0 +1,2 @@
+CREATE TYPE "public"."category_type" AS ENUM('hidden', 'displayed-all', 'displayed-posts', 'displayed-subcategories');--> statement-breakpoint
+CREATE TYPE "public"."post_status" AS ENUM('published', 'draft');
