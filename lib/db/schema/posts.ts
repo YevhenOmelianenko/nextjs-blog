@@ -19,7 +19,7 @@ export const posts = pgTable(
     categoryId: uuid('category_id')
       .notNull()
       .references(() => categories.id),
-    status: varchar('status', { length: 255 }).default(Status.Published).notNull(),
+    status: postStatusEnum('status').default(Status.Published).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
     updatedAt: timestamp('updated_at').defaultNow().notNull(),
   },

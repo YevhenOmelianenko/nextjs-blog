@@ -1,0 +1,2 @@
+ALTER TABLE "posts" ALTER COLUMN "status" SET DEFAULT 'published'::"public"."post_status";--> statement-breakpoint
+ALTER TABLE "posts" ALTER COLUMN "status" SET DATA TYPE "public"."post_status" USING "status"::"public"."post_status";
