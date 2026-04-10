@@ -1,5 +1,7 @@
 import { Category } from '@/lib/db/schema/categories';
 import getSubcategoriesByCategoryId from '@/lib/db/actions/get-subcategories-by-category-id';
+import Pager from '@/components/pager';
+import { SUBCATEGORIES_PER_PAGE } from '@/config';
 
 type PropsType = {
   category: Category;
@@ -7,7 +9,7 @@ type PropsType = {
 };
 
 export default async function SubcategoriesList(props: PropsType) {
-  const { category } = props;
+  const { category, page } = props;
   const subcategories = await getSubcategoriesByCategoryId(category.id);
 
   return (
@@ -16,6 +18,7 @@ export default async function SubcategoriesList(props: PropsType) {
       {subcategories.map((subcat) => (
         <div key={subcat.id}>{subcat.title}</div>
       ))}
+      <Pager page={page} pageLength={SUBCATEGORIES_PER_PAGE} totalLength={subcategories.length} />
     </div>
   );
 }

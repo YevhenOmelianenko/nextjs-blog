@@ -1,5 +1,7 @@
 import { Category } from '@/lib/db/schema/categories';
 import getPostsByCategoryId from '@/lib/db/actions/get-posts-by-category-id';
+import Pager from '@/components/pager';
+import { POSTS_PER_PAGE } from '@/config';
 
 type PropsType = {
   category: Category;
@@ -7,7 +9,7 @@ type PropsType = {
 };
 
 export default async function PostsList(props: PropsType) {
-  const { category } = props;
+  const { category, page } = props;
   const posts = await getPostsByCategoryId(category.id);
 
   return (
@@ -16,6 +18,7 @@ export default async function PostsList(props: PropsType) {
       {posts.map((post) => (
         <div key={post.id}>{post.title}</div>
       ))}
+      <Pager page={page} pageLength={POSTS_PER_PAGE} totalLength={posts.length} />
     </div>
   );
 }

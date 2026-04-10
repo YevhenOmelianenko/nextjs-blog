@@ -5,7 +5,6 @@ import PostWrapper from '@/components/wrappers/post';
 import CategoryWrapper from '@/components/wrappers/category';
 import PostsList from '@/components/posts-list';
 import SubcategoriesList from '@/components/subcategories-list';
-import Pager from '@/components/pager';
 import { Status } from '@/lib/db/schema/posts';
 import { Type } from '@/lib/db/schema/categories';
 
@@ -25,8 +24,8 @@ export default async function Page(props: PropsType) {
       <CategoryWrapper>
         <h1>{category.title}</h1>
         <SubcategoriesList category={category} page={page} />
+
         <PostsList category={category} page={page} />
-        <Pager page={page} />
       </CategoryWrapper>
     );
   } else if (category?.type === Type.DisplayedSubcategories) {
@@ -34,7 +33,6 @@ export default async function Page(props: PropsType) {
       <CategoryWrapper>
         <h1>{category.title}</h1>
         <SubcategoriesList category={category} page={page} />
-        <Pager page={page} />
       </CategoryWrapper>
     );
   } else if (category?.type === Type.DisplayedPosts) {
@@ -42,7 +40,6 @@ export default async function Page(props: PropsType) {
       <CategoryWrapper>
         <h1>{category.title}</h1>
         <PostsList category={category} page={page} />
-        <Pager page={page} />
       </CategoryWrapper>
     );
   }
