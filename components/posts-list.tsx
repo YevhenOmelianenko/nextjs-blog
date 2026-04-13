@@ -10,7 +10,7 @@ type PropsType = {
 
 export default async function PostsList(props: PropsType) {
   const { category, page } = props;
-  const posts = await getPostsByCategoryId(category.id);
+  const posts = await getPostsByCategoryId(category.id, page);
 
   return (
     <div className="posts-list">

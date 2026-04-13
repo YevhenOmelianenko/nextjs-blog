@@ -24,7 +24,6 @@ export default async function Page(props: PropsType) {
       <CategoryWrapper>
         <h1>{category.title}</h1>
         <SubcategoriesList category={category} page={page} />
-
         <PostsList category={category} page={page} />
       </CategoryWrapper>
     );

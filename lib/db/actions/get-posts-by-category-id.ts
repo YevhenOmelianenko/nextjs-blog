@@ -1,7 +1,19 @@
 import { posts, Post } from '../schema/posts';
 import { db } from '../client';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
+import { POSTS_PER_PAGE } from '@/config';
 
-export default async function getPostsByCategoryId(categoryId: string): Promise<Post[]> {
-  return db.select().from(posts).where(eq(posts.categoryId, categoryId));
+export default async function getPostsByCategoryId(
+  categoryId: string,
+  page: number
+): Promise<Post[]> {
+  const result = await db
+    .select()
+    .from(posts)
+    .where(eq(posts.categoryId, categoryId))
+    .orderBy(desc(posts.createdAt))
+    .limit(POSTS_PER_PAGE)
+    .offset((page - 1) * POSTS_PER_PAGE);
+
+  return result;
 }
