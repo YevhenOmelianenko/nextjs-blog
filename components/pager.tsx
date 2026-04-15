@@ -8,9 +8,9 @@ export default async function Pager(props: PropsType) {
   const { page, pageLength, totalLength } = props;
   return (
     <div className="pager">
-      {page}
-      {pageLength}
-      {totalLength}
+      page = {page} <br />
+      pageLength = {pageLength} <br />
+      totalLength = {totalLength} <br />
       [1], [2], [3] ...
     </div>
   );

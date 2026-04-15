@@ -10,7 +10,7 @@ type PropsType = {
 
 export default async function SubcategoriesList(props: PropsType) {
   const { category, page } = props;
-  const subcategories = await getSubcategoriesByCategoryId(category.id);
+  const { subcategories, totalCount } = await getSubcategoriesByCategoryId(category.id);
 
   return (
     <div className="subcategories-list">
@@ -18,7 +18,7 @@ export default async function SubcategoriesList(props: PropsType) {
       {subcategories.map((subcat) => (
         <div key={subcat.id}>{subcat.title}</div>
       ))}
-      <Pager page={page} pageLength={SUBCATEGORIES_PER_PAGE} totalLength={subcategories.length} />
+      <Pager page={page} pageLength={SUBCATEGORIES_PER_PAGE} totalLength={totalCount} />
     </div>
   );
 }

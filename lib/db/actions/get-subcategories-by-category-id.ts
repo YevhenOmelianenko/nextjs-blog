@@ -1,9 +1,25 @@
 import { categories, Category } from '../schema/categories';
 import { db } from '../client';
-import { eq } from 'drizzle-orm';
+import { eq, desc, sql } from 'drizzle-orm';
+import { SUBCATEGORIES_PER_PAGE } from '@/config';
 
 export default async function getSubcategoriesByCategoryId(
-  categoryId: string
+  categoryId: string,
+  page: number
 ): Promise<Category[]> {
-  return db.select().from(categories).where(eq(categories.parentId, categoryId));
+  const result = await db
+    .select({
+      category: categories,
+      totalCount: sql<number>`count(*) OVER()`.mapWith(Number),
+    })
+    .from(categories)
+    .where(eq(categories.parentId, categoryId))
+    .orderBy(desc(categories.createdAt))
+    .limit(SUBCATEGORIES_PER_PAGE)
+    .offset((page - 1) * SUBCATEGORIES_PER_PAGE);
+
+  return {
+    subcategories: result.map((obj) => obj.category),
+    totalCount: result.length ? result[0].totalCount : 0,
+  };
 }

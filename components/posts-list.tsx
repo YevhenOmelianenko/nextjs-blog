@@ -10,7 +10,7 @@ type PropsType = {
 
 export default async function PostsList(props: PropsType) {
   const { category, page } = props;
-  const posts = await getPostsByCategoryId(category.id, page);
+  const { posts, totalCount } = await getPostsByCategoryId(category.id, page);
 
   return (
     <div className="posts-list">
@@ -18,7 +18,7 @@ export default async function PostsList(props: PropsType) {
       {posts.map((post) => (
         <div key={post.id}>{post.title}</div>
       ))}
-      <Pager page={page} pageLength={POSTS_PER_PAGE} totalLength={posts.length} />
+      <Pager page={page} pageLength={POSTS_PER_PAGE} totalLength={totalCount} />
     </div>
   );
 }
