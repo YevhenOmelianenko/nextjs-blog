@@ -1,6 +1,6 @@
 {
-  "id": "5905728a-1021-453d-9b08-c8f3fb2a736a",
-  "prevId": "c7a59f30-518e-4102-a49c-04768e5920ed",
+  "id": "2a5de5f2-4d34-4f00-9d87-d72875121600",
+  "prevId": "5905728a-1021-453d-9b08-c8f3fb2a736a",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -47,6 +47,25 @@
           "type": "uuid",
           "primaryKey": false,
           "notNull": false
+        },
+        "seo_description": {
+          "name": "seo_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "og_image": {
+          "name": "og_image",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_sitemap": {
+          "name": "is_sitemap",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
         }
       },
       "indexes": {
@@ -146,6 +165,25 @@
           "primaryKey": false,
           "notNull": true,
           "default": "'published'"
+        },
+        "seo_description": {
+          "name": "seo_description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "og_image": {
+          "name": "og_image",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_sitemap": {
+          "name": "is_sitemap",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
         },
         "created_at": {
           "name": "created_at",
