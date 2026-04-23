@@ -43,6 +43,13 @@
       "when": 1775681277255,
       "tag": "0005_lowly_stature",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1776954559458,
+      "tag": "0006_cooing_golden_guardian",
+      "breakpoints": true
     }
   ]
 }
