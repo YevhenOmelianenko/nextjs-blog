@@ -1,5 +1,5 @@
 export { contactMetadata as metadata } from '@/lib/seo/static';
-import JsonLd from '@/components/json-ld';
+import { JsonLd } from '@/components/json-ld';
 import { contactSchema } from '@/lib/seo/static';
 
 export default function ContactPage() {

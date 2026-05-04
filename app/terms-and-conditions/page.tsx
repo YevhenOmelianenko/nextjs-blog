@@ -1,5 +1,5 @@
 export { termsAndConditionsMetadata as metadata } from '@/lib/seo/static';
-import JsonLd from '@/components/json-ld';
+import { JsonLd } from '@/components/json-ld';
 import { termsAndConditionsSchema } from '@/lib/seo/static';
 
 export default function TermsAndConditionsPage() {

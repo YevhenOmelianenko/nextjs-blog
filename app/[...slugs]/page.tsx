@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 import { resolveSlugContentCached } from './resolve-slug-content';
-import JsonLd from '@/components/json-ld';
+import { JsonLd } from '@/components/json-ld';
 
 type PropsType = {
   params: Promise<{ slugs: string[] }>;

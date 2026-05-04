@@ -2,7 +2,7 @@ import getRootCategories from '@/lib/db/actions/get-root-categories';
 import Link from 'next/link';
 import { BLOG_PREFIX } from '@/config';
 export { blogMetadata as metadata } from '@/lib/seo/static';
-import JsonLd from '@/components/json-ld';
+import { JsonLd } from '@/components/json-ld';
 import { blogSchema } from '@/lib/seo/static';
 
 export default async function BlogPage() {
