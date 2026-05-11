@@ -7,5 +7,9 @@ type PropsType = {
 export default async function CategoryWrapper(props: PropsType) {
   const { children } = props;
 
-  return <div className="category-wrapper">{children}</div>;
+  return (
+    <main className="page-main">
+      <div className="content-wrapper category-wrapper">{children}</div>
+    </main>
+  );
 }

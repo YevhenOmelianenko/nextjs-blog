@@ -5,9 +5,15 @@ import { termsAndConditionsSchema } from '@/lib/seo/static';
 export default function TermsAndConditionsPage() {
   return (
     <>
-      <div>
-        <h1>Terms And Conditions</h1>
-      </div>
+      <main className="page-main">
+        <div className="content-wrapper measure-prose">
+          <h1 className="heading text-3xl sm:text-4xl">Terms &amp; conditions</h1>
+          <p className="hero-lead mt-6">
+            This page will hold your terms of use. Replace this placeholder with counsel-approved
+            text before launch.
+          </p>
+        </div>
+      </main>
       <JsonLd schema={termsAndConditionsSchema} />
     </>
   );

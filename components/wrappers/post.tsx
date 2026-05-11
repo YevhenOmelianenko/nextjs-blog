@@ -6,5 +6,9 @@ type PropsType = {
 
 export default async function PostWrapper(props: PropsType) {
   const { children } = props;
-  return <div className="post-wrapper">{children}</div>;
+  return (
+    <main className="page-main">
+      <article className="content-wrapper post-wrapper">{children}</article>
+    </main>
+  );
 }

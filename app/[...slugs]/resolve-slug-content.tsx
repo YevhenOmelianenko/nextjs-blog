@@ -35,7 +35,7 @@ export async function resolveSlugContent(
     const schema = generateCategorySchema(category, slugs);
     const reactNode = (
       <CategoryWrapper>
-        <h1>{category.title}</h1>
+        <h1 className="heading text-3xl sm:text-4xl">{category.title}</h1>
         <SubcategoriesList category={category} page={page} slugs={slugs} />
         <PostsList category={category} page={page} slugs={slugs} />
       </CategoryWrapper>
@@ -46,7 +46,7 @@ export async function resolveSlugContent(
     const schema = generateCategorySchema(category, slugs);
     const reactNode = (
       <CategoryWrapper>
-        <h1>{category.title}</h1>
+        <h1 className="heading text-3xl sm:text-4xl">{category.title}</h1>
         <SubcategoriesList category={category} page={page} slugs={slugs} />
       </CategoryWrapper>
     );
@@ -56,7 +56,7 @@ export async function resolveSlugContent(
     const schema = generateCategorySchema(category, slugs);
     const reactNode = (
       <CategoryWrapper>
-        <h1>{category.title}</h1>
+        <h1 className="heading text-3xl sm:text-4xl">{category.title}</h1>
         <PostsList category={category} page={page} slugs={slugs} />
       </CategoryWrapper>
     );
@@ -69,8 +69,19 @@ export async function resolveSlugContent(
     const schema = generatePostSchema(post, slugs);
     const reactNode = (
       <PostWrapper>
-        <h1>{post.title}</h1>
-        <div>{post.body}</div>
+        <header className="measure-prose">
+          <h1 className="heading text-3xl sm:text-4xl">{post.title}</h1>
+          <p className="muted-label mt-3">
+            Updated{' '}
+            {new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(post.updatedAt)}
+          </p>
+        </header>
+        <hr className="divider-accent measure-prose" />
+        <div className="post-body">
+          {post.body.split(/\n{2,}/).map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
       </PostWrapper>
     );
     return { metadata, schema, reactNode };

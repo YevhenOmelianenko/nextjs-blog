@@ -22,13 +22,21 @@ export default async function SubcategoriesList(props: PropsType) {
   const parentCategoryPath = `/${BLOG_PREFIX}/${slugs.join('/')}`;
 
   return (
-    <div className="subcategories-list">
-      <div>Display Subcategories</div>
-      {subcategories.map((subcat) => (
-        <div key={subcat.id}>
-          <Link href={`${parentCategoryPath}/${subcat.slug}`}>{subcat.title}</Link>
-        </div>
-      ))}
+    <div className="subcategories-list mt-10">
+      <h2 className="section-title">Topics</h2>
+      <div className="card-grid card-grid--2">
+        {subcategories.map((subcat) => (
+          <Link
+            key={subcat.id}
+            href={`${parentCategoryPath}/${subcat.slug}`}
+            className="article-card"
+          >
+            <span className="tag">{category.title}</span>
+            <h3 className="heading mt-4 text-xl">{subcat.title}</h3>
+            <p className="muted-label mt-4">Open category →</p>
+          </Link>
+        ))}
+      </div>
       <Pager page={page} pageLength={SUBCATEGORIES_PER_PAGE} totalLength={totalCount} />
     </div>
   );

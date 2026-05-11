@@ -19,7 +19,7 @@ export default function Pager(props: PropsType) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className="pager flex items-center gap-2">
+    <nav className="pager" aria-label="Pagination">
       {pages.map((pageNumber) => {
         const isActive = pageNumber === page;
         return (
@@ -27,16 +27,12 @@ export default function Pager(props: PropsType) {
             key={pageNumber}
             href={buildHref(pageNumber)}
             aria-current={isActive ? 'page' : undefined}
-            className={
-              isActive
-                ? 'rounded border border-black px-3 py-1 font-semibold'
-                : 'rounded border px-3 py-1'
-            }
+            className={`pager__link${isActive ? ' pager__link--active' : ''}`}
           >
             {pageNumber}
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }

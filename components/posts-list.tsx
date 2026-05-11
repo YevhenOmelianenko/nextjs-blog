@@ -11,6 +11,8 @@ type PropsType = {
   slugs: string[];
 };
 
+const dateFormatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' });
+
 export default async function PostsList(props: PropsType) {
   const { category, page, slugs } = props;
   const { posts, totalCount } = await getPostsByCategoryId(category.id, page);
@@ -22,16 +24,20 @@ export default async function PostsList(props: PropsType) {
   const categoryPath = `/${BLOG_PREFIX}/${slugs.join('/')}`;
 
   return (
-    <div className="posts-list">
-      <div>Display Posts</div>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <Link href={`${categoryPath}/${post.slug}`}>
-            <h2>{post.title}</h2>
+    <div className="posts-list mt-10">
+      <h2 className="section-title">Latest posts</h2>
+      <div className="card-grid">
+        {posts.map((post) => (
+          <Link key={post.id} href={`${categoryPath}/${post.slug}`} className="article-card">
+            <span className="tag">{category.title}</span>
+            <h3 className="heading mt-4 text-xl">{post.title}</h3>
+            <p className="mt-3 font-serif text-[var(--text-base)] leading-relaxed text-[var(--text-secondary)]">
+              {post.teaser}
+            </p>
+            <p className="muted-label mt-5">{dateFormatter.format(post.createdAt)}</p>
           </Link>
-          <div>{post.teaser}</div>
-        </div>
-      ))}
+        ))}
+      </div>
       <Pager page={page} pageLength={POSTS_PER_PAGE} totalLength={totalCount} />
     </div>
   );
