@@ -17,10 +17,21 @@ body {
   transition:
     background-color 0.15s ease,
     color 0.15s ease;
+
+  a {
+    color: var(--info);
+  }
 }
 
-a {
-  color: var(--info);
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 .container {
