@@ -8,6 +8,7 @@ import PostWrapper from '@/components/wrappers/post-wrapper/post-wrapper';
 import CategoryWrapper from '@/components/wrappers/category-wrapper/category-wrapper';
 import PostsList from '@/components/lists/posts-list/posts-list';
 import SubcategoriesList from '@/components/lists/subcategories-list/subcategories-list';
+import { AuthorsList } from '@/components/lists/authors-list/authors-list';
 import { Status } from '@/lib/db/schema/posts';
 import { Type } from '@/lib/db/schema/categories';
 import { BLOG_PREFIX } from '@/config';
@@ -71,6 +72,7 @@ export async function resolveSlugContent(
       <PostWrapper>
         <h1>{post.title}</h1>
         <div>{post.body}</div>
+        <AuthorsList authors={post.authors} />
       </PostWrapper>
     );
     return { metadata, schema, reactNode };
