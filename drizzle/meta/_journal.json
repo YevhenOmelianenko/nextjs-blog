@@ -64,6 +64,20 @@
       "when": 1781466043513,
       "tag": "0008_bitter_smasher",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1781897050525,
+      "tag": "0009_light_sabretooth",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1781988047771,
+      "tag": "0010_clumsy_electro",
+      "breakpoints": true
     }
   ]
 }
