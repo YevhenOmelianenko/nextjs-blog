@@ -14,6 +14,7 @@ import { Type } from '@/lib/db/schema/categories';
 import { BLOG_PREFIX } from '@/config';
 import { generateCategoryMetadata, generateCategorySchema } from '@/lib/seo/category';
 import { generatePostMetadata, generatePostSchema } from '@/lib/seo/post';
+import { mdToHtml } from '@/lib/content/md-to-html';
 
 export const resolveSlugContentCached = cache(async (page: number, ...slugs: string[]) => {
   return resolveSlugContent(slugs, page);
@@ -66,12 +67,13 @@ export async function resolveSlugContent(
 
   const post = await getPostByFullPath(slugs);
   if (post?.status === Status.Published) {
+    const bodyHtml = await mdToHtml(post.body);
     const metadata = generatePostMetadata(post, slugs);
     const schema = generatePostSchema(post, slugs);
     const reactNode = (
       <PostWrapper>
         <h1>{post.title}</h1>
-        <div>{post.body}</div>
+        <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
         <AuthorsList authors={post.authors} />
       </PostWrapper>
     );
