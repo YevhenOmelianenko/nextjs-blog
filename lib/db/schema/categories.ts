@@ -1,14 +1,4 @@
-import {
-  foreignKey,
-  pgEnum,
-  pgTable,
-  index,
-  uuid,
-  varchar,
-  integer,
-  boolean,
-  text,
-} from 'drizzle-orm/pg-core';
+import { foreignKey, pgEnum, pgTable, index, uuid, varchar, integer, boolean, text } from 'drizzle-orm/pg-core';
 import { type InferSelectModel, type InferInsertModel } from 'drizzle-orm';
 
 export enum Type {

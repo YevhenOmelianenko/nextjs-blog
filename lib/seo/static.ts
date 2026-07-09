@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 import type { WebPage, WithContext } from 'schema-dts';
 
-function createStaticPageSchema(
-  name: string,
-  description: string,
-  path: string
-): WithContext<WebPage> {
+function createStaticPageSchema(name: string, description: string, path: string): WithContext<WebPage> {
   const siteUrl = process.env.PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
   return {
@@ -35,11 +31,7 @@ export const homeMetadata: Metadata = {
   },
 };
 
-export const homeSchema = createStaticPageSchema(
-  'Home',
-  'Explore the latest articles, categories, and guides.',
-  '/'
-);
+export const homeSchema = createStaticPageSchema('Home', 'Explore the latest articles, categories, and guides.', '/');
 
 export const aboutMetadata: Metadata = {
   title: 'About',

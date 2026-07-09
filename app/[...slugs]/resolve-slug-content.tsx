@@ -8,12 +8,12 @@ import PostWrapper from '@/components/wrappers/post-wrapper/post-wrapper';
 import CategoryWrapper from '@/components/wrappers/category-wrapper/category-wrapper';
 import PostsList from '@/components/lists/posts-list/posts-list';
 import SubcategoriesList from '@/components/lists/subcategories-list/subcategories-list';
-import { AuthorsList } from '@/components/lists/authors-list/authors-list';
 import { Status } from '@/lib/db/schema/posts';
 import { Type } from '@/lib/db/schema/categories';
 import { BLOG_PREFIX } from '@/config';
 import { generateCategoryMetadata, generateCategorySchema } from '@/lib/seo/category';
 import { generatePostMetadata, generatePostSchema } from '@/lib/seo/post';
+import { PostAuthorsList } from '@/components/lists/post-authors-list/post-authors-list';
 import { mdToHtml } from '@/lib/content/md-to-html';
 
 export const resolveSlugContentCached = cache(async (page: number, ...slugs: string[]) => {
@@ -67,16 +67,17 @@ export async function resolveSlugContent(
 
   const post = await getPostByFullPath(slugs);
   if (post?.status === Status.Published) {
-    const bodyHtml = await mdToHtml(post.body);
     const metadata = generatePostMetadata(post, slugs);
     const schema = generatePostSchema(post, slugs);
+
     const reactNode = (
       <PostWrapper>
         <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
-        <AuthorsList authors={post.authors} />
+        <div dangerouslySetInnerHTML={{ __html: await mdToHtml(post.body) }} />
+        <PostAuthorsList authors={post.authors} />
       </PostWrapper>
     );
+
     return { metadata, schema, reactNode };
   }
 

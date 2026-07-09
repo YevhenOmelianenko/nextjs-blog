@@ -1,13 +1,14 @@
 import 'dotenv/config';
 import postgres from 'postgres';
 import { drizzle } from 'drizzle-orm/postgres-js';
+import { sql } from 'drizzle-orm';
 import * as schema from './schema';
 import { categories, Type } from './schema/categories';
 import { posts, Status, type NewPost } from './schema/posts';
 import { authors } from './schema/authors';
 import { postsAuthors } from './schema/posts-authors';
 import { staticContents } from './schema/static-contents';
-import { sql } from 'drizzle-orm';
+import { configs } from './schema/configs';
 
 const client = postgres(process.env.DATABASE_URL!);
 const db = drizzle(client, { schema });
@@ -17,11 +18,9 @@ async function main() {
   await db.execute(sql`TRUNCATE TABLE "categories" RESTART IDENTITY CASCADE`);
   await db.execute(sql`TRUNCATE TABLE "authors" RESTART IDENTITY CASCADE`);
   await db.execute(sql`TRUNCATE TABLE "static_contents" RESTART IDENTITY CASCADE`);
+  await db.execute(sql`TRUNCATE TABLE "configs" RESTART IDENTITY CASCADE`);
 
-  const [tech] = await db
-    .insert(categories)
-    .values({ title: 'Technology', slug: 'technology', weight: 1 })
-    .returning();
+  const [tech] = await db.insert(categories).values({ title: 'Technology', slug: 'technology', weight: 1 }).returning();
   const [lifestyle] = await db
     .insert(categories)
     .values({ title: 'Lifestyle', slug: 'lifestyle', type: Type.DisplayedSubcategories, weight: 2 })
@@ -246,6 +245,29 @@ async function main() {
       body: 'Terms and Conditions content',
     },
     { id: 'contact', title: 'Contact', body: 'Contact content' },
+  ]);
+
+  await db.insert(configs).values([
+    {
+      id: 'social_link_github',
+      label: 'Github',
+      value: 'https://github.com/',
+    },
+    {
+      id: 'social_link_linkedin',
+      label: 'Linkedin',
+      value: 'http://linkedin.com/',
+    },
+    {
+      id: 'social_link_x',
+      label: 'X',
+      value: 'http://x.com/',
+    },
+    {
+      id: 'contact_email',
+      label: 'Contact Email',
+      value: 'hello@dev-signal.com',
+    },
   ]);
 }
 

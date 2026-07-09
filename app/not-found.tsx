@@ -16,9 +16,7 @@ export default function NotFound() {
     <main className={styles.main}>
       <p className={styles.eyebrow}>404 error</p>
       <h1 className={styles.title}>Page not found</h1>
-      <p className={styles.description}>
-        The link may be outdated or typed incorrectly. Try one of the pages below.
-      </p>
+      <p className={styles.description}>The link may be outdated or typed incorrectly. Try one of the pages below.</p>
 
       <div className={styles.actions}>
         <Link href="/" className={`${styles.link} ${styles.primaryLink}`}>

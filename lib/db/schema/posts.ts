@@ -1,13 +1,4 @@
-import {
-  pgTable,
-  text,
-  timestamp,
-  index,
-  uuid,
-  varchar,
-  pgEnum,
-  boolean,
-} from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, index, uuid, varchar, pgEnum, boolean } from 'drizzle-orm/pg-core';
 import { type InferSelectModel, type InferInsertModel } from 'drizzle-orm';
 import { categories } from './categories';
 import { Author } from './authors';

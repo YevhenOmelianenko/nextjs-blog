@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { type Author } from '@/lib/db/schema/authors';
-import styles from './authors-list.module.scss';
+import styles from './post-authors-list.module.scss';
 
-interface AuthorsListProps {
+interface PostAuthorsListProps {
   authors: Author[];
 }
 
-export function AuthorsList({ authors }: AuthorsListProps) {
+export function PostAuthorsList({ authors }: PostAuthorsListProps) {
   if (!authors || authors.length === 0) return null;
 
   return (

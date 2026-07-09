@@ -12,9 +12,7 @@ export default async function getPostsByCategoryId(
   const rows = await db
     .select({
       post: posts,
-      authors: sql<
-        Author[]
-      >`COALESCE(json_agg(${authors}.*) FILTER (WHERE ${authors}.id IS NOT NULL), '[]')`.mapWith(
+      authors: sql<Author[]>`COALESCE(json_agg(${authors}.*) FILTER (WHERE ${authors}.id IS NOT NULL), '[]')`.mapWith(
         (val) => (typeof val === 'string' ? JSON.parse(val) : val)
       ),
       totalCount: sql<number>`count(*) OVER()`.mapWith(Number),

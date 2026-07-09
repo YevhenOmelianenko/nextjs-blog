@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import { applyTheme, getThemeFromDocument, type Theme } from '@/lib/theme';
 import styles from './theme-toggle.module.scss';
 
@@ -11,7 +12,6 @@ export function ThemeToggle() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(getThemeFromDocument());
-
     setMounted(true);
   }, []);
 
@@ -27,17 +27,17 @@ export function ThemeToggle() {
       className={styles.toggle}
       onClick={toggle}
       disabled={!mounted}
-      aria-label={
-        mounted
-          ? theme === 'dark'
-            ? 'Switch to light mode'
-            : 'Switch to dark mode'
-          : 'Toggle theme'
-      }
+      aria-label={mounted ? (theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode') : 'Toggle theme'}
     >
-      <span className={styles.icon} aria-hidden="true">
-        {mounted ? (theme === 'dark' ? '🌙' : '☀️') : '🌙'}
-      </span>
+      {mounted ? (
+        theme === 'dark' ? (
+          <MoonIcon className={styles.icon} aria-hidden="true" />
+        ) : (
+          <SunIcon className={styles.icon} aria-hidden="true" />
+        )
+      ) : (
+        <MoonIcon className={styles.icon} aria-hidden="true" />
+      )}
     </button>
   );
 }
